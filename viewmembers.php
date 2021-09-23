@@ -13,10 +13,8 @@
         <th>#</th>
         <th>First Name</th>
         <th>Last Name</th>
-        <th>Date of Birth</th>
-        <th>Email Address</th>
-        <th>Contact Number</th>
         <th>Member Type</th>
+        <th>Actions</th>
     </tr>
 
     <?php while($r = $results->fetch(PDO::FETCH_ASSOC)){ ?>
@@ -24,10 +22,13 @@
         <td><?php echo $r['member_id']?></td>
         <td><?php echo $r['firstname']?></td>
         <td><?php echo $r['lastname']?></td>
-        <td><?php echo $r['dateofbirth']?></td>
-        <td><?php echo $r['emailaddress']?></td>
-        <td><?php echo $r['contactnumber']?></td>
         <td><?php echo $r['name']?></td>
+        <td>
+            <a href="view.php?id=<?php echo $r['member_id']?>" class="btn btn-primary">View</a>
+            <a href="edit.php?id=<?php echo $r['member_id']?>" class="btn btn-warning">Edit</a>
+            <a onclick="return confirm('Are you sure you want to remove this member?');"
+                href="delete.php?id=<?php echo $r['member_id']?>" class="btn btn-danger">Delete</a>
+        </td>
     </tr>
     <?php } ?>
 

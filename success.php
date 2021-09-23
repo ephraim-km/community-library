@@ -16,12 +16,17 @@
       $isSuccess = $crud->insertMember($fname, $lname, $dob, $email, $contact, $applicant_type_id);
 
       if ($isSuccess) {
-          echo '<h1 class="text-center text-success">You have Successfuly Registered!</h1>';        
+          include 'includes/successmessage.php';
+                 
       }
       else{
-          echo '<h1 class="text-center text-danger">There was an error in processing!</h1>';
+          include 'includes/errormessage.php';
       }
       
+   }
+   else{
+       include 'includes/errormessage.php';
+       //header("Location: index.php");
    }
    
 ?>

@@ -21,17 +21,17 @@
 
     <div class="mb-3">
         <label for="firstname" class="form-label">First Name</label>
-        <input type="text" class="form-control" id="firstname" name="firstname">
+        <input required type="text" class="form-control" id="firstname" name="firstname">
     </div>
 
     <div class="mb-3">
         <label for="lastname" class="form-label">Last Name</label>
-        <input type="text" class="form-control" id="lastname" name="lastname">
+        <input required type="text" class="form-control" id="lastname" name="lastname">
     </div>
 
     <div class="mb-3">
         <label for="dob" class="form-label">Date of Birth</label>
-        <input type="text" class="form-control" id="dob" name="dob">
+        <input type="text" class="form-control" id="dob" name="dob" autocomplete="off">
     </div>
 
     <div class="mb-3">
@@ -45,7 +45,7 @@
 
     <div class="mb-3">
         <label for="email" class="form-label">Email address</label>
-        <input type="email" class="form-control" id="email" aria-describedby="email" name="email">
+        <input required type="email" class="form-control" id="email" aria-describedby="email" name="email">
         <div id="email" class="form-text">We'll never share your email with anyone else.</div>
     </div>
 

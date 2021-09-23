@@ -9,11 +9,16 @@
     $dsn = "mysql:host=$host;dbname=$db;charset=$charset";
 
     try {
+        
         $pdo = new PDO($dsn, $user, $pass);
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         echo "Connected to Database";
+        
     } catch (PDOException $e) {
+        
+        echo "<h1 class='text-danger'>Unable to connect to the database!</h1>";
         throw new PDOException($e->getMessage());
+        
     }
 
     require_once "crud.php";

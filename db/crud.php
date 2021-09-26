@@ -7,10 +7,10 @@ class crud{
        $this->db = $conn;
    }
    
-   public function insertMember($fname, $lname, $dob, $email, $contact, $applicant_type_id){
+   public function insertMember($fname, $lname, $dob, $email, $contact, $applicant_type_id, $avatar_path){
        try {
-           $sql = "INSERT INTO members (firstname, lastname, dateofbirth, emailaddress, contactnumber,applicant_type_id) VALUES (:fname, :lname, :dob, :email, :contact, :applicant_type_id)";
-           
+           $sql = "INSERT INTO members (firstname, lastname, dateofbirth, emailaddress, contactnumber, applicant_type_id, avatar_path) VALUES (:fname, :lname, :dob, :email, :contact, :applicant_type_id, :avatar_path)";
+          
            $stmt = $this->db->prepare($sql);
            
            $stmt->bindparam(':fname', $fname);
@@ -19,6 +19,7 @@ class crud{
            $stmt->bindparam(':email', $email);
            $stmt->bindparam(':contact', $contact);
            $stmt->bindparam(':applicant_type_id', $applicant_type_id);
+           $stmt->bindparam(':avatar_path', $avatar_path);
 
            $stmt->execute();
            return true;
@@ -29,7 +30,7 @@ class crud{
           return false;
        }
    }
-   public function editMember($id, $fname, $lname, $dob, $email, $contact, $applicant_type_id){
+   public function editMember($id, $fname, $lname, $dob, $email, $contact, $applicant_type_id,){
        
         try {
 
@@ -105,7 +106,7 @@ class crud{
             echo $e->getMessage();
             return false;
     
-   }
+       }
        
    }
    public function getMemberType(){

@@ -1,11 +1,8 @@
 <br>
-<br>
-
-<div id="footer">
-    <?php echo "copyright " . date('y'); ?>
+<div id="footer" class="p-3 bg-primary bg-white">
+    <p class="text-center">Copyright &copy; - Community Library Registration System <?php echo date('Y'); ?></p>
 </div>
-<br>
-<br>
+
 </div>
 
 <!-- Option 1: Bootstrap Bundle with Popper -->

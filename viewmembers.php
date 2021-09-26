@@ -1,6 +1,8 @@
 <?php
+
    $title = "View Members";
    require_once "includes/header.php";
+   require_once "includes/auth_check.php";
    require_once "db/conn.php";
 
    $results = $crud->getMembers();
@@ -24,10 +26,10 @@
         <td><?php echo $r['lastname']?></td>
         <td><?php echo $r['name']?></td>
         <td>
-            <a href="view.php?id=<?php echo $r['member_id']?>" class="btn btn-primary">View</a>
-            <a href="edit.php?id=<?php echo $r['member_id']?>" class="btn btn-warning">Edit</a>
+            <a href="view.php?id=<?php echo $r['member_id']?>" class="btn btn-primary space">View</a>
+            <a href="edit.php?id=<?php echo $r['member_id']?>" class="btn btn-warning space">Edit</a>
             <a onclick="return confirm('Are you sure you want to remove this member?');"
-                href="delete.php?id=<?php echo $r['member_id']?>" class="btn btn-danger">Delete</a>
+                href="delete.php?id=<?php echo $r['member_id']?>" class="btn btn-danger space">Delete</a>
         </td>
     </tr>
     <?php } ?>

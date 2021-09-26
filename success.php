@@ -12,8 +12,17 @@
       $email = $_POST['email'];
       $contact = $_POST['contact'];
       $applicant_type_id = $_POST['applicant'];
+      
+      $original_filename = $_FILES["avatar"]["name"];
+      $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
+      $tmp_filename = $_FILES["avatar"]["tmp_name"];
+      
+      $target_dir = 'uploads/';
+      $destination = "$target_dir$contact.$ext";
+      //$destination = $target_dir . basename($_FILES["imageToUpload"]["name"]);
+      move_uploaded_file($tmp_filename, $destination);
 
-      $isSuccess = $crud->insertMember($fname, $lname, $dob, $email, $contact, $applicant_type_id);
+      $isSuccess = $crud->insertMember($fname, $lname, $dob, $email, $contact, $applicant_type_id, $destination);
 
       if ($isSuccess) {
           include 'includes/successmessage.php';
@@ -30,6 +39,10 @@
    }
    
 ?>
+
+<div class="card" style="width: 18rem;">
+    <img src="<?php echo $destination?>" alt="avatar">
+</div>
 
 <div class="card" style="width: 18rem;">
 

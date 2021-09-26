@@ -4,7 +4,7 @@
    require_once "db/conn.php";
 
    $results = $crud->getMemberType();
-   
+
 ?>
 <!-- 
      First Name
@@ -16,8 +16,8 @@
  -->
 
 <h1 class="text-center">Registration for Library Membership</h1>
-
-<form method="POST" action="success.php">
+<br>
+<form method="POST" action="success.php" enctype="multipart/form-data">
 
     <div class="mb-3">
         <label for="firstname" class="form-label">First Name</label>
@@ -31,7 +31,7 @@
 
     <div class="mb-3">
         <label for="dob" class="form-label">Date of Birth</label>
-        <input type="text" class="form-control" id="dob" name="dob" autocomplete="off">
+        <input required type="text" class="form-control" id="dob" name="dob" autocomplete="off">
     </div>
 
     <div class="mb-3">
@@ -53,6 +53,14 @@
         <label for="contact" class="form-label">Contact Number</label>
         <input type="text" class="form-control" id="contact" aria-describedby="contact" name="contact">
         <div id="contact" class="form-text">We'll never share your number with anyone else.</div>
+    </div>
+
+    <div class="input-group mb-3">
+        <input type="file" class="form-control" accept="image/*" name="avatar" id="avatar">
+        <label class="input-group-text" for="avatar">Upload</label>
+    </div>
+    <div class="mb-3">
+        <div id="avatar" class="form-text text-danger">File Upload is Optional</div>
     </div>
 
     <button type="submit" class="btn btn-primary btn-block" name="submit">Submit</button>

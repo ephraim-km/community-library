@@ -15,6 +15,7 @@
         $isSuccess = $crud->editMember($id, $fname, $lname, $dob, $email, $contact, $applicant_type_id);
   
         if ($isSuccess) {
+            
             header("Location: viewmembers.php");        
         }
         else{

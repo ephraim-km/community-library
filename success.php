@@ -2,7 +2,7 @@
 
    $title = "Success";
    require_once "includes/header.php";
-   require_once "db//conn.php";
+   require_once "db/conn.php";
    
    if (isset($_POST['submit'])) {
        
@@ -13,19 +13,36 @@
       $contact = $_POST['contact'];
       $applicant_type_id = $_POST['applicant'];
       
+      $destination = null;
+      
       $original_filename = $_FILES["avatar"]["name"];
       $ext = pathinfo($_FILES["avatar"]["name"], PATHINFO_EXTENSION);
       $tmp_filename = $_FILES["avatar"]["tmp_name"];
       
       $target_dir = 'uploads/';
-      $destination = "$target_dir$contact.$ext";
-      //$destination = $target_dir . basename($_FILES["imageToUpload"]["name"]);
+      if (!empty($original_filename)) {
+        $destination = "$target_dir$contact.$ext";
+      }
+
       move_uploaded_file($tmp_filename, $destination);
 
       $isSuccess = $crud->insertMember($fname, $lname, $dob, $email, $contact, $applicant_type_id, $destination);
 
       if ($isSuccess) {
-          include 'includes/successmessage.php';
+          
+        if (!(isset($_SESSION['username']))) {
+ 
+            $user_login = $userobj->getUserLoginDetails($fname, $lname, $dob, $email, $contact, $applicant_type_id);
+            
+            $_SESSION['userId'] = $user_login['member_id'];
+            $_SESSION['username'] = $user_login['username'];
+
+            include 'includes/successmessage.php';
+            
+        }
+         else{
+            include 'includes/successmessage.php';
+         }
                  
       }
       else{
@@ -41,7 +58,9 @@
 ?>
 
 <div class="card" style="width: 18rem;">
-    <img src="<?php echo $destination?>" alt="avatar">
+
+    <img src="<?php echo empty($destination) ? 'uploads/blank.png' : $destination; ?>" alt="avatar">
+
 </div>
 
 <div class="card" style="width: 18rem;">
@@ -65,5 +84,11 @@
     </div>
 
 </div>
+
+<br>
+
+<?php if (isset($_SESSION['userId']) && !($_SESSION['username'] == 'admin')) {?>
+<a href="card.php?id=<?php echo $_SESSION['userId']?>" class="btn btn-primary">Download Membership Card</a>
+<?php } ?>
 
 <?php require_once "includes/footer.php";?>

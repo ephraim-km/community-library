@@ -40,6 +40,6 @@
     $crud = new crud($pdo);
     $userobj = new user($pdo);
 
-    $userobj->insertUser("Admin","password");
+    $userobj->insertAdmin("Admin","password");
 
 ?>

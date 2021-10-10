@@ -9,6 +9,14 @@
 
 ?>
 
+<form class="d-flex" method="GET" action="view.php">
+    <input class="form-control me-2" style="width:fit-content;" type="search" placeholder="Member number"
+        aria-label="Search" name="id">
+    <button class="btn btn-outline-success" type="submit" name="submit">View</button>
+</form>
+
+<br>
+
 <table class="table">
 
     <tr>

@@ -19,6 +19,7 @@
 
     <!-- Local CSS -->
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/response.css">
 
     <title>Library | <?php echo $title ?>
     </title>
@@ -42,20 +43,53 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                    <div class="navbar-nav me-auto">
+                    <!-- <div class="navbar-nav me-auto">
                         <a class="nav-link active" aria-current="page" href="index.php">Home</a>
                         <a class="nav-link" href="viewmembers.php">View Members</a>
-                    </div>
+                    </div> -->
                     <div class="navbar-nav ms-auto">
+
+                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
+
+                        <?php if (!isset($_SESSION['userId']) || $_SESSION['username'] == 'admin') {?>
+                        <a class="nav-link fade-white" aria-current="page" href="register.php">Register</a>
+                        <?php } ?>
+
+                        <?php if (!isset($_SESSION['username']) || !($_SESSION['username'] == 'admin')) {?>
+                        <?php } else { ?>
+                        <a class="nav-link fade-white" aria-current="page" href="viewmembers.php">View Members</a>
+                        <?php } ?>
+
                         <?php if (!isset($_SESSION['userId'])) {?>
-                        <a class="nav-link" aria-current="page" href="login.php">Login</a>
+                        <a class="nav-link" aria-current="page" href="login.php"><i class="fas fa-sign-in-alt"></i>
+                            Login</a>
                         <?php } else { ?>
 
-                        <a class="nav-link" aria-current="page" href="#"><span>Hello
-                                <?php echo $_SESSION['username'] ?> !</span></a>
-                        <a class="nav-link" aria-current="page" href="logout.php">Logout</a>
+                        <li class="nav-item dropdown">
+
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
+                                Hello
+                                <?php echo $_SESSION['username'] ?></span></a>
+                            </a>
+
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                                <?php if (($_SESSION['username']) != 'admin') {?>
+                                <li><a class="dropdown-item" href="userhome.php"><i class="fas fa-user-circle"></i>
+                                        Profile</a></li>
+                                <?php } ?>
+
+                                <li><a class="dropdown-item" href="logout.php"><i class="fas fa-sign-out-alt"></i>
+                                        Logout</a></li>
+
+                            </ul>
+
+                        </li>
                         <?php } ?>
+
                     </div>
+
                 </div>
 
             </div>

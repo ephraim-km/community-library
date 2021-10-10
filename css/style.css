@@ -1,5 +1,50 @@
-@media screen and (max-width: 768px) {
-  .space {
-    margin: 2px 0;
-  }
+.custom-header {
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)),
+    url(../resources/images/banner.jpg);
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}
+.custom-header .navbar-light .navbar-brand,
+.custom-header .navbar-light .navbar-nav .nav-link.active,
+.custom-header .navbar-light .navbar-nav .show > .nav-link,
+.custom-header .navbar-light .navbar-nav .nav-link {
+  color: #ccc;
+}
+.custom-header .navbar-light .navbar-brand:focus,
+.custom-header .navbar-light .navbar-brand:hover,
+.custom-header .navbar-light .navbar-nav .nav-link:focus,
+.custom-header .navbar-light .navbar-nav .nav-link:hover {
+  color: white;
+}
+
+.middle-caption {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: fit-content;
+}
+.middle-caption .col {
+  color: #ccc;
+}
+.middle-caption .col h1 {
+  font-size: 32px;
+}
+.middle-caption .col p {
+  font-size: 16px;
+}
+.btn-outline-primary {
+  color: #ccc;
+  border-color: #ccc;
+}
+.custom-header .btn {
+  width: 10rem;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 0;
+}
+.button-down {
+  padding-top: 30px;
 }

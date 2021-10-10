@@ -1,22 +1,19 @@
 <?php
-   $title = "View Member";
+   $title = "User Home";
    require_once "includes/header.php";
    require_once "includes/auth_check.php";
    require_once "db/conn.php";
 
-   if(!isset($_GET['id'])){
+   if(!isset($_SESSION['userId'])){
 
         include 'includes/errormessage.php';
         echo "<h1 class='text-danger'>Did not get the member id!</h1>";
+        //header("Location: viewmembers.php");
         
    }
    else{
-        $id = $_GET['id'];
-        if (!($crud->getMemberDetails($id))) {
-            echo "<h1 class='text-danger'>No member exists with such id!</h1>";
-        }
-        else {
-            $result = $crud->getMemberDetails($id);
+        $id = $_SESSION['userId'];
+        $result = $crud->getAllMemberDetails($id);
   
 ?>
 
@@ -35,6 +32,9 @@
             <?php echo $result['name'];?>
         </h6>
         <p class="card-text">
+            Username: <?php echo $result['username'];?>
+        </p>
+        <p class="card-text">
             Date of Birth: <?php echo $result['dateofbirth'];?>
         </p>
         <p class="card-text">
@@ -43,22 +43,16 @@
         <p class="card-text">
             Contact Number: <?php echo $result['contactnumber'];?>
         </p>
+
     </div>
 
 </div>
 
 <br>
-
-<a href="viewmembers.php" class="btn btn-info">Back to List</a>
-
-<a href="edit.php?id=<?php echo $result['member_id']?>" class="btn btn-warning">Edit</a>
-
+<a href="card.php" class="btn btn-primary">Download Membership Card</a>
+<!--<a href="edit.php?id=<?php //echo $result['member_id']?>" class="btn btn-warning">Edit</a>
 <a onclick="return confirm('Are you sure you want to remove this member?');"
-    href="delete.php?id=<?php echo $result['member_id']?>" class="btn btn-danger">Delete</a>
+    href="delete.php?id=<?php //echo $result['member_id']?>" class="btn btn-danger">Delete</a>
 
-<?php if ($_SESSION['username'] == 'admin') {?>
-<a href="card.php?id=<?php echo $result['member_id']?>" class="btn btn-primary">View Card</a>
-<?php }?>
-
-<?php } } ?>
+<?php } ?> -->
 <?php require_once "includes/footer.php";?>

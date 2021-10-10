@@ -3,20 +3,47 @@
    require_once "includes/header.php";
    require_once "db/conn.php";
 
+   $results = $crud->getMemberType();
+   if (isset($_SESSION['username'])) {
+       
+    if (($_SESSION['username'] == 'admin')) {
+        header("Location: viewmembers.php");
+     }
+     else{
+         header("Location: userhome.php");
+     }
+      
+   }
+
    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     
     $username = strtolower(trim($_POST['username']));
     $password = $_POST['password'];
     $new_password = md5($password.$username);
 
-    $result = $userobj->getUser($username, $new_password);
+    $admin_Id = $userobj->getAdminId($username, $new_password);
     
-    if (!$result) {
-        echo '<div class="alert alert-danger">Username or Password is Incorrect! Please try again.</div>';
+    if (!$admin_Id) {
+        //If it's not admin, check if it's user
+        $user_Id = $userobj->getUserId($username, $new_password);
+        
+        if (!$user_Id) {
+            echo '<div class="alert alert-danger">Username or Password is Incorrect! Please try again.</div>';
+        }
+        else{
+    
+            $_SESSION['username'] = $username;
+            $_SESSION['userId'] = $user_Id['member_id'];
+            
+            header('Location: userhome.php');
+        }
+        
     }
     else{
+    
         $_SESSION['username'] = $username;
-        $_SESSION['userId'] = $result['id'];
+        $_SESSION['userId'] = $admin_Id['id'];
+        
         header('Location: viewmembers.php');
     }
     

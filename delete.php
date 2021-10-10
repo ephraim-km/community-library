@@ -13,6 +13,17 @@
     else{
         $id = $_GET['id'];
 
+        $member = $crud->getMemberDetails($id);
+        $old_file_path = $member['avatar_path'];
+
+        if (file_exists($old_file_path)) {
+    
+            //If the file exists in the upload folder delete it...
+            
+            unlink($old_file_path);
+            
+        }
+
         $result = $crud->deleteMember($id);
 
         if ($result) {

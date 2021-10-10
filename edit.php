@@ -21,7 +21,7 @@
 
 <h1 class="text-center">Edit Record</h1>
 
-<form method="POST" action="editpost.php">
+<form method="POST" action="editpost.php" enctype="multipart/form-data">
 
     <input type="hidden" name="id" value="<?php echo $member['member_id']?>">
 
@@ -65,6 +65,14 @@
         <input type="text" class="form-control" value="<?php echo $member['contactnumber'] ?>" id="contact"
             aria-describedby="contact" name="contact">
         <div id="contact" class="form-text">We'll never share your number with anyone else.</div>
+    </div>
+
+    <div class="input-group mb-3">
+        <input type="file" class="form-control" accept="image/*" name="avatar" id="avatar">
+        <label class=" input-group-text" for="avatar">Upload</label>
+    </div>
+    <div class="mb-3">
+        <div id="avatar" class="form-text text-danger">File Upload is Optional</div>
     </div>
 
     <a href="viewmembers.php" class="btn btn-info">Back to List</a>
